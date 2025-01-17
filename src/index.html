@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Button Generator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="color"], input[type="range"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .button-preview {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .preview-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            font-family: monospace;
+        }
+        footer {
+    background: linear-gradient(90deg, #007BFF, #6a11cb);
+    color: #fff;
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 100%;
+}
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer-content p {
+    margin: 0;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    gap: 20px;
+}
+.footer-links li {
+    display: inline;
+}
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: #FFD700; 
+    text-decoration: underline;
+}
+
+
+    </style>
+</head>
+<body>
+    <h1>CSS Button Generator</h1>
+    <div class="container">
+
+        <div class="section">
+            <h2>Appearance</h2>
+            <label for="bg-color">Background Color:</label>
+            <input type="color" id="bg-color" value="#007BFF">
+
+            <label for="use-gradient">
+                <input type="checkbox" id="use-gradient"> Use Gradient Background
+            </label>
+
+            <div id="gradient-options" style="display: none;">
+                <label for="gradient-start">Gradient Start Color:</label>
+                <input type="color" id="gradient-start" value="#007BFF">
+
+                <label for="gradient-end">Gradient End Color:</label>
+                <input type="color" id="gradient-end" value="#FF5733">
+            </div>
+
+            <label for="text-color">Text Color:</label>
+            <input type="color" id="text-color" value="#FFFFFF">
+
+            <label for="border-radius">Border Radius (px):</label>
+            <input type="range" id="border-radius" min="0" max="50" value="5">
+
+            <label for="font-size">Font Size (px):</label>
+            <input type="range" id="font-size" min="12" max="36" value="16">
+
+            <label for="font-family">Font Family (Google Font Name):</label>
+            <input type="text" id="font-family" placeholder="e.g., Roboto">
+
+            <label for="padding">Padding (px):</label>
+            <input type="range" id="padding" min="0" max="30" value="10">
+
+            <label for="border-width">Border Width (px):</label>
+            <input type="range" id="border-width" min="0" max="10" value="2">
+
+            <label for="border-color">Border Color:</label>
+            <input type="color" id="border-color" value="#000000">
+
+            <label for="text-shadow">Text Shadow:</label>
+            <input type="checkbox" id="use-text-shadow">
+
+            <div id="text-shadow-options" style="display: none;">
+                <label for="text-shadow-color">Text Shadow Color:</label>
+                <input type="color" id="text-shadow-color" value="#000000">
+
+                <label for="text-shadow-blur">Text Shadow Blur (px):</label>
+                <input type="range" id="text-shadow-blur" min="0" max="10" value="3">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Hover Effects</h2>
+            <label>
+                <input type="checkbox" id="hover-scale"> Scale on Hover
+            </label>
+            <div id="scale-options" style="display: none;">
+                <label for="scale-value">Scale Value:</label>
+                <input type="range" id="scale-value" min="1" max="2" step="0.1" value="1.1">
+            </div>
+
+            <label>
+                <input type="checkbox" id="hover-opacity"> Change Opacity on Hover
+            </label>
+            <div id="opacity-options" style="display: none;">
+                <label for="opacity-value">Opacity Value:</label>
+                <input type="range" id="opacity-value" min="0.1" max="1" step="0.1" value="0.8">
+            </div>
+
+            <label>
+                <input type="checkbox" id="hover-shadow"> Add Shadow on Hover
+            </label>
+            <div id="shadow-options" style="display: none;">
+                <label for="shadow-color">Shadow Color:</label>
+                <input type="color" id="shadow-color" value="#000000">
+
+                <label for="shadow-size">Shadow Size (px):</label>
+                <input type="range" id="shadow-size" min="0" max="20" value="5">
+            </div>
+
+            <label>
+                <input type="checkbox" id="hover-rotate"> Rotate on Hover
+            </label>
+            <div id="rotate-options" style="display: none;">
+                <label for="rotate-angle">Rotate Angle (degrees):</label>
+                <input type="range" id="rotate-angle" min="0" max="360" value="15">
+            </div>
+        </div>
+
+        <div class="button-preview">
+            <button class="preview-button">Preview Button</button>
+        </div>
+
+        <label for="css-output">CSS Code:</label>
+        <textarea id="css-output" readonly></textarea>
+    </div>
+
+    <script>
+        const bgColorInput = document.getElementById('bg-color');
+        const useGradientInput = document.getElementById('use-gradient');
+        const gradientStartInput = document.getElementById('gradient-start');
+        const gradientEndInput = document.getElementById('gradient-end');
+        const textColorInput = document.getElementById('text-color');
+        const borderRadiusInput = document.getElementById('border-radius');
+        const fontSizeInput = document.getElementById('font-size');
+        const fontFamilyInput = document.getElementById('font-family');
+        const paddingInput = document.getElementById('padding');
+        const borderWidthInput = document.getElementById('border-width');
+        const borderColorInput = document.getElementById('border-color');
+        const useTextShadowInput = document.getElementById('use-text-shadow');
+        const textShadowColorInput = document.getElementById('text-shadow-color');
+        const textShadowBlurInput = document.getElementById('text-shadow-blur');
+        const hoverScaleInput = document.getElementById('hover-scale');
+        const scaleValueInput = document.getElementById('scale-value');
+        const hoverOpacityInput = document.getElementById('hover-opacity');
+        const opacityValueInput = document.getElementById('opacity-value');
+        const hoverShadowInput = document.getElementById('hover-shadow');
+        const shadowColorInput = document.getElementById('shadow-color');
+        const shadowSizeInput = document.getElementById('shadow-size');
+        const hoverRotateInput = document.getElementById('hover-rotate');
+        const rotateAngleInput = document.getElementById('rotate-angle');
+        const gradientOptions = document.getElementById('gradient-options');
+        const textShadowOptions = document.getElementById('text-shadow-options');
+        const scaleOptions = document.getElementById('scale-options');
+        const opacityOptions = document.getElementById('opacity-options');
+        const shadowOptions = document.getElementById('shadow-options');
+        const rotateOptions = document.getElementById('rotate-options');
+        const previewButton = document.querySelector('.preview-button');
+        const cssOutput = document.getElementById('css-output');
+
+        useGradientInput.addEventListener('change', () => {
+            gradientOptions.style.display = useGradientInput.checked ? 'block' : 'none';
+            updateButtonStyle();
+        });
+
+        useTextShadowInput.addEventListener('change', () => {
+            textShadowOptions.style.display = useTextShadowInput.checked ? 'block' : 'none';
+            updateButtonStyle();
+        });
+
+        hoverScaleInput.addEventListener('change', () => {
+            scaleOptions.style.display = hoverScaleInput.checked ? 'block' : 'none';
+            updateButtonStyle();
+        });
+
+        hoverOpacityInput.addEventListener('change', () => {
+            opacityOptions.style.display = hoverOpacityInput.checked ? 'block' : 'none';
+            updateButtonStyle();
+        });
+
+        hoverShadowInput.addEventListener('change', () => {
+            shadowOptions.style.display = hoverShadowInput.checked ? 'block' : 'none';
+            updateButtonStyle();
+        });
+
+        hoverRotateInput.addEventListener('change', () => {
+            rotateOptions.style.display = hoverRotateInput.checked ? 'block' : 'none';
+            updateButtonStyle();
+        });
+
+        function updateFontFamily(fontName) {
+            const fontLink = document.createElement('link');
+            fontLink.rel = 'stylesheet';
+            fontLink.href = `https://fonts.googleapis.com/css2?family=${fontName.replace(/ /g, '+')}&display=swap`;
+            document.head.appendChild(fontLink);
+        }
+
+        function updateButtonStyle() {
+            const bgColor = bgColorInput.value;
+            const gradientStart = gradientStartInput.value;
+            const gradientEnd = gradientEndInput.value;
+            const textColor = textColorInput.value;
+            const borderRadius = borderRadiusInput.value + 'px';
+            const fontSize = fontSizeInput.value + 'px';
+            const fontFamily = fontFamilyInput.value;
+            const padding = paddingInput.value + 'px';
+            const borderWidth = borderWidthInput.value + 'px';
+            const borderColor = borderColorInput.value;
+            const textShadowColor = textShadowColorInput.value;
+            const textShadowBlur = textShadowBlurInput.value + 'px';
+            const shadowColor = shadowColorInput.value;
+            const shadowSize = shadowSizeInput.value + 'px';
+            const scaleValue = scaleValueInput.value;
+            const opacityValue = opacityValueInput.value;
+            const rotateAngle = rotateAngleInput.value;
+
+            if (fontFamily) {
+                updateFontFamily(fontFamily);
+                previewButton.style.fontFamily = `'${fontFamily}', sans-serif`;
+            }
+
+            if (useGradientInput.checked) {
+                previewButton.style.backgroundImage = `linear-gradient(${gradientStart}, ${gradientEnd})`;
+            } else {
+                previewButton.style.backgroundImage = '';
+                previewButton.style.backgroundColor = bgColor;
+            }
+
+            previewButton.style.color = textColor;
+            previewButton.style.borderRadius = borderRadius;
+            previewButton.style.fontSize = fontSize;
+            previewButton.style.padding = padding;
+            previewButton.style.border = `${borderWidth} solid ${borderColor}`;
+
+            if (useTextShadowInput.checked) {
+                previewButton.style.textShadow = `0 0 ${textShadowBlur} ${textShadowColor}`;
+            } else {
+                previewButton.style.textShadow = '';
+            }
+
+            let hoverStyles = '';
+            if (hoverScaleInput.checked) {
+                hoverStyles += `transform: scale(${scaleValue});`;
+            }
+            if (hoverOpacityInput.checked) {
+                hoverStyles += `opacity: ${opacityValue};`;
+            }
+            if (hoverShadowInput.checked) {
+                hoverStyles += `box-shadow: 0 0 calc(${shadowSize} * 2) ${shadowColor};`;
+            }
+            if (hoverRotateInput.checked) {
+                hoverStyles += `transform: rotate(${rotateAngle}deg);`;
+            }
+
+            previewButton.onmouseover = () => {
+                previewButton.style.cssText += hoverStyles;
+            };
+            previewButton.onmouseout = () => {
+                previewButton.style.cssText = `
+                    ${useGradientInput.checked ? `background-image: linear-gradient(${gradientStart}, ${gradientEnd});` : `background-color: ${bgColor};`}
+                    color: ${textColor};
+                    border-radius: ${borderRadius};
+                    font-size: ${fontSize};
+                    padding: ${padding};
+                    border: ${borderWidth} solid ${borderColor};
+                    ${useTextShadowInput.checked ? `text-shadow: 0 0 ${textShadowBlur} ${textShadowColor};` : ''}
+                    font-family: '${fontFamily}', sans-serif;
+                `;
+            };
+
+            cssOutput.value = `button {
+    ${useGradientInput.checked ? `background-image: linear-gradient(${gradientStart}, ${gradientEnd});` : `background-color: ${bgColor};`}
+    color: ${textColor};
+    border-radius: ${borderRadius};
+    font-size: ${fontSize};
+    padding: ${padding};
+    border: ${borderWidth} solid ${borderColor};
+    ${useTextShadowInput.checked ? `text-shadow: 0 0 ${textShadowBlur} ${textShadowColor};` : ''}
+    font-family: '${fontFamily}', sans-serif;
+}
+
+button:hover {
+    ${hoverScaleInput.checked ? `transform: scale(${scaleValue});` : ''}
+    ${hoverOpacityInput.checked ? `opacity: ${opacityValue};` : ''}
+    ${hoverShadowInput.checked ? `box-shadow: 0 0 calc(${shadowSize} * 2) ${shadowColor};` : ''}
+    ${hoverRotateInput.checked ? `transform: rotate(${rotateAngle}deg);` : ''}
+}`;
+        }
+
+        bgColorInput.addEventListener('input', updateButtonStyle);
+        gradientStartInput.addEventListener('input', updateButtonStyle);
+        gradientEndInput.addEventListener('input', updateButtonStyle);
+        textColorInput.addEventListener('input', updateButtonStyle);
+        borderRadiusInput.addEventListener('input', updateButtonStyle);
+        fontSizeInput.addEventListener('input', updateButtonStyle);
+        fontFamilyInput.addEventListener('input', updateButtonStyle);
+        paddingInput.addEventListener('input', updateButtonStyle);
+        borderWidthInput.addEventListener('input', updateButtonStyle);
+        borderColorInput.addEventListener('input', updateButtonStyle);
+        textShadowColorInput.addEventListener('input', updateButtonStyle);
+        textShadowBlurInput.addEventListener('input', updateButtonStyle);
+        scaleValueInput.addEventListener('input', updateButtonStyle);
+        opacityValueInput.addEventListener('input', updateButtonStyle);
+        shadowColorInput.addEventListener('input', updateButtonStyle);
+        shadowSizeInput.addEventListener('input', updateButtonStyle);
+        rotateAngleInput.addEventListener('input', updateButtonStyle);
+
+        updateButtonStyle();
+    </script>
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2025 Mojo & Muhammad Noraeii - All Rights Reserved</p>
+        <ul class="footer-links">
+            <li><a href="mailto:Muhammad.Noraeii@gmail.com">Contact</a></li>
+            <li><a href="https://github.com/Muhammad-Noraeii" target="_blank">GitHub</a></li>
+            <li><a href="https://mojoeo.com" target="_blank" rel="noopener noreferrer">Web Site</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>
