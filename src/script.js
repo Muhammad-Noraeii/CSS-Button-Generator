@@ -179,3 +179,13 @@ button:hover {
         rotateAngleInput.addEventListener('input', updateButtonStyle);
 
         updateButtonStyle();
+document.getElementById('copy-button').addEventListener('click', function() {
+            var textArea = document.getElementById('css-output');
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); 
+
+         
+            document.execCommand('copy');
+
+            alert('CSS copied to clipboard!');
+        });
